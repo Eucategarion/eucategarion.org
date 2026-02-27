@@ -1,4 +1,17 @@
 import styled from '@emotion/styled';
+import Hero from '~/components/Hero';
+import type { Route } from './+types/404';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: '404 - Página no encontrada | Reino Soberano de Eucategarion' },
+    {
+      name: 'description',
+      content:
+        'Sacratísimo Reino Soberano de Eucategarion, Trono y Sede Metropolitana de las Provincias Digitales y Custodio del Orden',
+    },
+  ];
+}
 
 const NotFoundContainer = styled.div`
   display: flex;
@@ -15,10 +28,10 @@ const NotFoundContainer = styled.div`
 `;
 
 export const NotFound = () => (
-  <NotFoundContainer>
-    <h2>404 - Página no encontrada</h2>
-    <p>Lo sentimos, la página que buscas no existe.</p>
-  </NotFoundContainer>
+  <Hero
+    title="404 - Página no encontrada"
+    subtitle="Lo sentimos, la página que buscas no existe."
+  />
 );
 
 export default NotFound;
