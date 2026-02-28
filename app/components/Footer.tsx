@@ -55,6 +55,8 @@ const MenuContainer = styled.ul`
   }
 `;
 
+const { imperialYear } = getCurrentImperialYear();
+
 const Footer = () => (
   <FooterContainer>
     <MenuContainer>
@@ -90,7 +92,7 @@ const Footer = () => (
 
       <p>🏛 Fundado en el Año I del Orden Elevado</p>
 
-      <p>© Año {getCurrentImperialYear()} E.O.E. — Trono de Eucategarion</p>
+      <p>© Año {imperialYear} E.O.E. — Trono de Eucategarion</p>
     </MenuContainer>
   </FooterContainer>
 );

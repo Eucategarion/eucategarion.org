@@ -14,6 +14,8 @@ const HeaderContainer = styled.header`
   }
 `;
 
+const date = formatImperial();
+
 const Header = () => (
   <HeaderContainer>
     <img
@@ -29,7 +31,7 @@ const Header = () => (
         Trono y Sede Metropolitana de las Provincias Digitales y Custodio del
         Orden
       </p>
-      <p className="text-m">{formatImperial()}</p>
+      <p className="text-m">{date}</p>
     </div>
   </HeaderContainer>
 );
