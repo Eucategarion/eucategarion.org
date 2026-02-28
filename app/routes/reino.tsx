@@ -1,4 +1,4 @@
-import type { Route } from './+types/Reino';
+import type { Route } from './+types/reino';
 
 import { Grid } from '@mui/material';
 import Hero from '~/components/Hero';
