@@ -6,5 +6,6 @@ export default [
   route('calendario', 'routes/calendar.tsx'),
   route('cancilleria', 'routes/cancilleria.tsx'),
   route('gobierno', 'routes/gobierno.tsx'),
+  route('legislacion', 'routes/legislation.tsx'),
   route('*', 'routes/404.tsx'),
 ] satisfies RouteConfig;
