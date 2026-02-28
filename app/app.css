@@ -131,3 +131,10 @@ body {
 .fc .fc-daygrid-body table {
   table-layout: fixed;
 }
+
+.MuiStepLabel-label {
+  font-size: 1.3rem !important;
+  font-family: 'Cardo', serif !important;
+  font-weight: 700 !important;
+  color: #0b0b0d !important;
+}

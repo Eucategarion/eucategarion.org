@@ -4,5 +4,6 @@ export default [
   index('routes/home.tsx'),
   route('reino', 'routes/Reino.tsx'),
   route('calendario', 'routes/calendar.tsx'),
+  route('cancilleria', 'routes/cancilleria.tsx'),
   route('*', 'routes/404.tsx'),
 ] satisfies RouteConfig;
