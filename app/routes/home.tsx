@@ -120,11 +120,51 @@ export default function Home() {
           estructura del Reino.
         </p>
       </Section>
-      <Separator />
       <Section>
-        <p className="mb-4 text-center" style={{ fontSize: '1.4rem' }}>
-          El Orden precede a toda autoridad.
-        </p>
+        <h2 className="text-4xl font-bold mb-8 text-center">
+          La Estructura del Reino
+        </h2>
+        <Grid container spacing={4}>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <div className="realm-card">
+              <img src="/metropolis.png" alt="La Metrópolis" />
+              <div className="realm-card-content">
+                <h3>La Metrópolis</h3>
+                <p>El núcleo del Reino, sede del Trono y centro doctrinal.</p>
+              </div>
+            </div>
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <div className="realm-card">
+              <img
+                src="/gobierno-provincia-orden.png"
+                alt="Provincias Mayores"
+              />
+              <div className="realm-card-content">
+                <h3>Provincias Mayores</h3>
+                <p>
+                  Divisiones administrativas para la custodia del Orden, la
+                  Fides y la cultura.
+                </p>
+              </div>
+            </div>
+          </Grid>
+        </Grid>
+      </Section>
+
+      <Section>
+        <div className="liber-ordinis">
+          <h2 className="text-4xl font-bold mb-4">
+            Liber Ordinim Eucategarionis
+          </h2>
+          <p className="text-lg">
+            “El Trono de Eucategarion es la sede visible del Orden eterno. El
+            Orden precede a toda autoridad y fundamenta toda rectitud.”
+          </p>
+          <a href="/legislacion" className="liber-ordinis-link">
+            Leer más
+          </a>
+        </div>
       </Section>
     </>
   );
