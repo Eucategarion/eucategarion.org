@@ -27,46 +27,72 @@
     background: #0b0b0d;
     border-top: 3px solid #c6a75e;
     border-bottom: 1px solid rgba(198,167,94,0.18);
-    position: relative;
-    z-index: 100;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    transition:
+      background 0.4s ease,
+      border-top-color 0.4s ease,
+      border-bottom-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+  header.is-scrolled {
+    background: rgba(11, 11, 13, 0.82);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border-top-color: rgba(198, 167, 94, 0.45);
+    border-bottom-color: rgba(198, 167, 94, 0.08);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.45);
   }
 
   .mh {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1.25rem 2rem;
+    padding: 1rem 2rem;
     display: grid;
-    grid-template-columns: 58px 1px 1fr auto;
+    grid-template-columns: 78px 1px 1fr auto;
     align-items: center;
     gap: 1.75rem;
+    transition: padding 0.35s ease;
+  }
+
+  header.is-scrolled .mh {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
   }
 
   .mh-crest { display: block; }
-  .mh-crest img { width: 58px; height: auto; display: block; opacity: 0.88; }
+  .mh-crest img { width: 78px; height: auto; display: block; opacity: 0.92; transition: width 0.35s ease, opacity 0.35s ease; }
+  header.is-scrolled .mh-crest img { width: 52px; opacity: 0.85; }
 
   .mh-sep {
     width: 1px;
-    height: 44px;
+    height: 58px;
     background: linear-gradient(to bottom, transparent, rgba(198,167,94,0.28), transparent);
+    transition: height 0.35s ease;
   }
+
+  header.is-scrolled .mh-sep { height: 40px; }
 
   .mh-name {
     font-family: 'Cardo', serif;
-    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    font-size: clamp(0.95rem, 2vw, 1.35rem);
     font-weight: 700;
     color: #c6a75e;
     letter-spacing: 0.02em;
-    margin: 0 0 0.18rem;
+    margin: 0 0 0.22rem;
     line-height: 1.2;
   }
 
   .mh-tagline {
-    font-family: 'Roboto Slab', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    color: rgba(244,241,232,0.28);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: rgba(244,241,232,0.32);
     margin: 0;
     text-transform: uppercase;
+    font-style: italic;
   }
 
   /* Hamburger — visible only on mobile */
@@ -97,20 +123,20 @@
 
   @media (max-width: 700px) {
     .mh {
-      grid-template-columns: 44px 1px 1fr auto;
-      padding: 0.9rem 1.25rem;
+      grid-template-columns: 54px 1px 1fr auto;
+      padding: 0.85rem 1.25rem;
       gap: 1rem;
     }
-    .mh-crest img { width: 44px; }
-    .mh-name { font-size: 0.9rem; }
+    .mh-crest img { width: 54px; }
+    .mh-name { font-size: 0.92rem; }
     .mh-tagline { display: none; }
     .mh-burger { display: flex; }
   }
 
   @media (max-width: 380px) {
-    .mh { grid-template-columns: 38px 1fr auto; gap: 0.75rem; }
+    .mh { grid-template-columns: 44px 1fr auto; gap: 0.75rem; }
     .mh-sep { display: none; }
-    .mh-crest img { width: 38px; }
-    .mh-name { font-size: 0.82rem; }
+    .mh-crest img { width: 44px; }
+    .mh-name { font-size: 0.84rem; }
   }
 </style>

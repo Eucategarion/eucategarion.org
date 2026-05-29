@@ -129,19 +129,36 @@ import Separator from '~/components/Separator.astro';
   /* ── Pullquote ── */
   .rk-pullquote {
     background: #0e1a2b;
-    padding: 4rem 2rem;
+    padding: 5.5rem 2rem;
     text-align: center;
     border-bottom: 1px solid rgba(198,167,94,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rk-pullquote::before {
+    content: '\201C';
+    font-family: 'Cardo', serif;
+    font-size: 20rem;
+    line-height: 1;
+    color: rgba(198, 167, 94, 0.055);
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    user-select: none;
   }
 
   .rk-pullquote p {
     font-family: 'Cardo', serif;
     font-style: italic;
-    font-size: clamp(1.2rem, 3vw, 1.75rem);
-    color: rgba(244,241,232,0.82);
-    max-width: 70ch;
+    font-size: clamp(1.3rem, 3.2vw, 2rem);
+    color: rgba(244,241,232,0.85);
+    max-width: 65ch;
     margin: 0 auto 0.75rem;
-    line-height: 1.55;
+    line-height: 1.5;
+    position: relative;
   }
 
   .rk-pullquote span {
@@ -243,7 +260,7 @@ import Separator from '~/components/Separator.astro';
   }
 
   .rk-metro-content p {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 0.92rem;
     color: rgba(244,241,232,0.72);
     line-height: 1.8;
@@ -367,7 +384,7 @@ import Separator from '~/components/Separator.astro';
   }
 
   .rk-ic-content ul li {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 0.72rem;
     color: rgba(244,241,232,0.55);
     padding: 0.15rem 0 0.15rem 1rem;
