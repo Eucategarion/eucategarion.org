@@ -1,0 +1,417 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Hero from '~/components/Hero.astro';
+import Separator from '~/components/Separator.astro';
+---
+
+<BaseLayout
+  title="El Reino | Reino Soberano de Eucategarion"
+  description="Geografía e instituciones del Sacratísimo Reino Soberano de Eucategarion: La Metrópolis, el Palacio del Trono, el Archivo Imperial y la Cancillería."
+>
+
+  <Hero
+    title="El Reino"
+    subtitle="Ordo et Fides"
+    image="/metropolis.png"
+    imageAlt="La Metrópolis de Eucategarion, sede visible del Orden eterno"
+  />
+
+  <!-- Pullquote oscuro -->
+  <div class="rk-pullquote" data-reveal="fade">
+    <p>"El Trono de Eucategarion es la sede visible del Orden eterno."</p>
+    <span>— <em>Liber Ordinis Eucategarionis</em></span>
+  </div>
+
+  <!-- Mapa grande -->
+  <section class="rk-map-section">
+    <p class="rk-section-eyebrow">Cartografía del Reino</p>
+    <figure class="rk-map-figure" data-reveal="scale">
+      <img src="/mapa.png" alt="Mapa del Sacratísimo Reino Soberano de Eucategarion con sus Provincias Mayores" />
+      <figcaption>Mapa oficial del Sacratísimo Reino Soberano de Eucategarion</figcaption>
+    </figure>
+  </section>
+
+  <!-- La Metrópolis — sección dark con imagen grande -->
+  <section class="rk-metropolis">
+    <div class="rk-metro-image" data-reveal="left">
+      <img src="/Alexion.png" alt="Su Augusta y Sacratísima Majestad Alexion I, Autócrator de Eucategarion" />
+    </div>
+    <div class="rk-metro-content" data-reveal="right">
+      <p class="rk-metro-eyebrow">Núcleo del Reino</p>
+      <h2>La Metrópolis</h2>
+      <p>
+        La Metrópolis de Eucategarion no es solo capital administrativa.
+        Es centro doctrinal, archivo vivo y eje axial del Reino.
+        Gobernada directamente por Su Augusta y Sacratísima Majestad, el Autócrator Alexion I.
+      </p>
+      <ul class="rk-metro-list">
+        <li>Sede del Trono</li>
+        <li>Custodia del Acta Fundacional</li>
+        <li>Centro de gobierno supremo</li>
+        <li>Corazón doctrinal del Orden</li>
+        <li>Archivo y memoria institucional</li>
+      </ul>
+      <p class="rk-metro-nota">No es provincia. No es territorio delegado.<br />Es dominio inmediato del Trono.</p>
+    </div>
+  </section>
+
+  <!-- Instituciones — grid de cards con imagen -->
+  <section class="rk-institutions">
+    <p class="rk-inst-eyebrow">Instituciones de la Metrópolis</p>
+    <div class="rk-inst-grid" data-stagger>
+
+      <div class="rk-inst-card">
+        <img src="/palacio.png" alt="El Palacio Imperial del Trono" />
+        <div class="rk-ic-overlay"></div>
+        <div class="rk-ic-content">
+          <h3>El Palacio del Trono</h3>
+          <p>Centro simbólico y jurídico del Reino.</p>
+          <ul>
+            <li>Proclamaciones imperiales</li>
+            <li>Audiencias solemnes</li>
+            <li>Emisión de edictos</li>
+            <li>Recepción de embajadores</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rk-inst-card">
+        <img src="/archivo.png" alt="El Archivo Imperial Metropolitano" />
+        <div class="rk-ic-overlay"></div>
+        <div class="rk-ic-content">
+          <h3>Archivo Imperial</h3>
+          <p>Nada se elimina. Todo se consigna.</p>
+          <ul>
+            <li>Acta Fundacional · Liber Ordinis</li>
+            <li>Decretos y edictos imperiales</li>
+            <li>Registro de ciudadanos y dignidades</li>
+            <li>Cronología oficial del Reino</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rk-inst-card">
+        <img src="/sello.png" alt="La Cámara del Sello" />
+        <div class="rk-ic-overlay"></div>
+        <div class="rk-ic-content">
+          <h3>Cámara del Sello</h3>
+          <p>La autoridad no se falsifica: se certifica.</p>
+          <ul>
+            <li>Aplicación del Sello Imperial</li>
+            <li>Numeración de documentos</li>
+            <li>Custodia de la firma imperial</li>
+            <li>Validación y autenticidad</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rk-inst-card">
+        <img src="/cancilleria.png" alt="La Cancillería Imperial" />
+        <div class="rk-ic-overlay"></div>
+        <div class="rk-ic-content">
+          <h3>Cancillería Imperial</h3>
+          <p>La voz estructurada del Trono.</p>
+          <ul>
+            <li>Redacción formal de documentos</li>
+            <li>Correspondencia diplomática</li>
+            <li>Gestión protocolaria</li>
+            <li>Convocatorias imperiales</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ── Pullquote ── */
+  .rk-pullquote {
+    background: #0e1a2b;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(198,167,94,0.15);
+  }
+
+  .rk-pullquote p {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 3vw, 1.75rem);
+    color: rgba(244,241,232,0.82);
+    max-width: 70ch;
+    margin: 0 auto 0.75rem;
+    line-height: 1.55;
+  }
+
+  .rk-pullquote span {
+    font-family: 'Cardo', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: rgba(198,167,94,0.45);
+  }
+
+  /* ── Mapa ── */
+  .rk-map-section {
+    background: #f4f1e8;
+    padding: 4.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(198,167,94,0.2);
+  }
+
+  .rk-section-eyebrow {
+    font-family: 'Cardo', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: #c6a75e;
+    margin: 0 0 2rem;
+  }
+
+  .rk-map-figure {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .rk-map-figure img {
+    width: 100%;
+    display: block;
+    border: 2px solid rgba(198,167,94,0.35);
+    box-shadow: 0 16px 60px rgba(90,15,27,0.18);
+  }
+
+  .rk-map-figure figcaption {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: #7a3a46;
+    margin-top: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── La Metrópolis ── */
+  .rk-metropolis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+
+  .rk-metro-image {
+    overflow: hidden;
+  }
+
+  .rk-metro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.75) sepia(0.08);
+    display: block;
+  }
+
+  .rk-metro-content {
+    background: #0b0b0d;
+    padding: 4rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .rk-metro-eyebrow {
+    font-family: 'Cardo', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(198,167,94,0.45);
+    margin: 0 0 1rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .rk-metro-content h2 {
+    font-family: 'Cardo', serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #c6a75e;
+    margin: 0 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(198,167,94,0.2);
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .rk-metro-content p {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.92rem;
+    color: rgba(244,241,232,0.72);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .rk-metro-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .rk-metro-list li {
+    font-family: 'Cardo', serif;
+    font-size: 0.88rem;
+    color: rgba(244,241,232,0.6);
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    border-bottom: 1px solid rgba(198,167,94,0.08);
+    position: relative;
+  }
+
+  .rk-metro-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(198,167,94,0.4);
+  }
+
+  .rk-metro-nota {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(198,167,94,0.5) !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* ── Institutions grid ── */
+  .rk-institutions {
+    background: #0b0b0d;
+    padding-top: 0;
+    border-top: 1px solid rgba(198,167,94,0.12);
+  }
+
+  .rk-inst-eyebrow {
+    font-family: 'Cardo', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(198,167,94,0.35);
+    text-align: center;
+    padding: 2.5rem 2rem 0;
+    margin: 0;
+  }
+
+  .rk-inst-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1.5rem;
+  }
+
+  .rk-inst-card {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .rk-inst-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.45) sepia(0.15);
+    transition: filter 0.5s ease, transform 0.6s ease;
+    display: block;
+  }
+
+  .rk-inst-card:hover img {
+    filter: brightness(0.32) sepia(0.25);
+    transform: scale(1.04);
+  }
+
+  .rk-ic-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(5,2,2,0.92) 0%, rgba(5,2,2,0.2) 55%, transparent 100%);
+  }
+
+  .rk-ic-content {
+    position: absolute;
+    bottom: 0;
+    inset-inline: 0;
+    padding: 1.75rem 2rem;
+  }
+
+  .rk-ic-content h3 {
+    font-family: 'Cardo', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #f4f1e8;
+    margin: 0 0 0.3rem;
+  }
+
+  .rk-ic-content > p {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: rgba(198,167,94,0.65);
+    margin: 0 0 0.8rem;
+  }
+
+  .rk-ic-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none; /* show on hover */
+  }
+
+  .rk-inst-card:hover .rk-ic-content ul {
+    display: block;
+  }
+
+  .rk-ic-content ul li {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.72rem;
+    color: rgba(244,241,232,0.55);
+    padding: 0.15rem 0 0.15rem 1rem;
+    position: relative;
+  }
+
+  .rk-ic-content ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(198,167,94,0.4);
+  }
+
+  /* Gold top line on hover */
+  .rk-inst-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: #c6a75e;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .rk-inst-card:hover::after { transform: scaleX(1); }
+
+  @media (max-width: 900px) {
+    .rk-metropolis { grid-template-columns: 1fr; }
+    .rk-metro-image { height: 280px; }
+    .rk-inst-grid { grid-template-columns: 1fr; }
+    .rk-inst-card { height: 320px; }
+  }
+
+  @media (max-width: 600px) {
+    .rk-pullquote { padding: 3rem 1.5rem; }
+    .rk-pullquote p { font-size: 1rem; }
+    .rk-map-section { padding: 3rem 1.5rem; }
+    .rk-metro-content { padding: 2.5rem 1.5rem; }
+    .rk-metro-content h2 { font-size: 1.5rem; letter-spacing: 0.03em; }
+    .rk-metro-eyebrow { letter-spacing: 0.1em; font-size: 0.55rem; }
+    .rk-metro-list li { font-size: 0.82rem; }
+    .rk-ic-content h3 { font-size: 0.95rem; letter-spacing: 0.04em; }
+    .rk-ic-content { padding: 1.25rem 1.25rem; }
+    .rk-inst-eyebrow { letter-spacing: 0.18em; }
+  }
+</style>

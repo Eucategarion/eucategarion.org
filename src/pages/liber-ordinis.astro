@@ -1,0 +1,304 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Separator from '~/components/Separator.astro';
+
+const chapters = [
+  {
+    id: 'prologus',
+    title: 'Prologus',
+    articles: null,
+    text: `Este es el libro del Orden. No el libro de un hombre, ni de un poder, sino del Orden mismo,
+que preexiste a toda institución y a toda voluntad.
+El Trono de Eucategarion custodia este libro. No lo posee. No lo escribe. Lo preserva y lo hace visible.`,
+  },
+  {
+    id: 'liber-i',
+    title: 'Liber I — Del Orden',
+    articles: [
+      'El Orden precede a toda autoridad.',
+      'La Verdad no se crea: se custodia.',
+      'Ninguna institución es legítima si no sirve al Orden.',
+      'El Orden no es instrumento del poder: el poder es instrumento del Orden.',
+      'El Orden es anterior al tiempo; su manifestación en el Reino es temporal, pero su esencia es eterna.',
+    ],
+  },
+  {
+    id: 'liber-ii',
+    title: 'Liber II — De la Fides',
+    articles: [
+      'La Fides no se impone: se preserva.',
+      'La Fe es el reconocimiento libre de que el Orden es verdadero.',
+      'Sin Fides, el Orden se convierte en burocracia. Sin Orden, la Fides se convierte en superstición.',
+      'El Reino custodia la Fides sin pretender poseerla.',
+      'La Fides se comunica por el testimonio, no por la coerción.',
+    ],
+  },
+  {
+    id: 'liber-iii',
+    title: 'Liber III — De la Institución',
+    articles: [
+      'El Reino existe para dar forma visible al Orden.',
+      'Todo cargo, dignidad o función existe en servicio al Orden, no en beneficio propio.',
+      'La autoridad se legitima por el servicio, no por el nombramiento.',
+      'Quien traiciona el Orden pierde toda autoridad, aunque conserve el título.',
+      'Las instituciones duran mientras sirven al Orden. Cuando dejan de hacerlo, se extinguen.',
+    ],
+  },
+  {
+    id: 'liber-iv',
+    title: 'Liber IV — De la Metrópolis',
+    articles: [
+      'La Metrópolis es el corazón visible del Reino.',
+      'En ella habita el Trono, y desde ella emana toda norma legítima.',
+      'La Metrópolis no es privilegio: es responsabilidad.',
+      'Todo lo que se consigna en el Archivo Metropolitano se considera verdadero hasta prueba en contrario.',
+      'Gobernar la Metrópolis es custodiar el centro del Orden.',
+    ],
+  },
+  {
+    id: 'liber-v',
+    title: 'Liber V — Del Autocrátor',
+    articles: [
+      'El Autocrátor es el Custodio supremo del Orden, no su propietario.',
+      'Gobierna porque sirve, no sirve porque gobierna.',
+      'Su autoridad nace del Orden y al Orden regresa.',
+      'Ningún acto del Autocrátor es legítimo si contradice el Orden que está llamado a custodiar.',
+      'El Autocrátor responde ante el Orden, no ante ningún hombre.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Liber Ordinis | Reino Soberano de Eucategarion"
+  description="El Liber Ordinis Eucategarionis: texto doctrinal y jurídico fundamental del Sacratísimo Reino Soberano de Eucategarion."
+>
+  <div class="liber-page-wrapper">
+    <header class="liber-hero">
+      <div class="liber-hero-inner">
+        <img src="/escudo-white.png" alt="Escudo del Reino" class="liber-crest" />
+        <div class="liber-rule"></div>
+        <h1 class="liber-main-title">Liber Ordinis</h1>
+        <p class="liber-main-sub">Eucategarionis</p>
+        <div class="liber-rule liber-rule--inv"></div>
+        <p class="liber-main-desc">
+          Texto doctrinal y jurídico fundamental del Sacratísimo Reino Soberano de Eucategarion
+        </p>
+      </div>
+    </header>
+
+    <div class="liber-body">
+      {chapters.map((ch, i) => (
+        <>
+          {i > 0 && <Separator ornament="✦" />}
+          <section class="liber-chapter" id={ch.id} data-reveal>
+            <h2 class="liber-chapter-title">{ch.title}</h2>
+            {ch.text && (
+              <p class="liber-prologus-text">{ch.text}</p>
+            )}
+            {ch.articles && (
+              <ol class="liber-articles">
+                {ch.articles.map((art, j) => (
+                  <li class="liber-article-item">
+                    <span class="art-num">Art. {j + 1}.</span>
+                    {art}
+                  </li>
+                ))}
+              </ol>
+            )}
+          </section>
+        </>
+      ))}
+
+      <Separator ornament="✦" />
+
+      <section class="liber-chapter liber-colofonch" data-reveal="fade">
+        <h2 class="liber-chapter-title">Colofón</h2>
+        <p class="liber-colofonch-text">
+          Este libro no tiene final.<br />
+          El Orden siempre tiene algo más que decir.<br />
+          El Trono escucha.
+        </p>
+        <p class="liber-promulgacion">
+          Promulgado en el Año I E.O.E.<br />
+          <strong>Alexion I</strong> — Autocrátor, Patriarca y Custodio Perpetuo del Orden
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .liber-page-wrapper {
+    background: #0b0b0d;
+    min-height: 100vh;
+  }
+
+  .liber-hero {
+    background: linear-gradient(160deg, #0e1a2b 0%, #0b0b0d 60%);
+    border-bottom: 1px solid rgba(198, 167, 94, 0.25);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .liber-hero-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .liber-crest {
+    width: 100px;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+
+  .liber-ornament {
+    font-family: 'Cardo', serif;
+    color: #c6a75e;
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+  }
+
+  .liber-main-title {
+    font-family: 'Cardo', serif;
+    font-size: clamp(2rem, 11vw, 5rem);
+    color: #c6a75e;
+    letter-spacing: 0.06em;
+    margin: 0;
+    line-height: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .liber-main-sub {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: rgba(198, 167, 94, 0.7);
+    margin: 0;
+  }
+
+  .liber-main-desc {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.9rem;
+    color: rgba(244, 241, 232, 0.5);
+    max-width: 50ch;
+    text-align: center;
+    font-style: italic;
+    margin: 0.5rem 0;
+  }
+
+  .liber-body {
+    max-width: 68ch;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  .liber-chapter {
+    margin-bottom: 1rem;
+  }
+
+  .liber-chapter-title {
+    font-family: 'Cardo', serif;
+    font-size: 1rem;
+    color: #c6a75e;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.2);
+  }
+
+  .liber-prologus-text {
+    font-family: 'Roboto Slab', serif;
+    color: rgba(244, 241, 232, 0.85);
+    font-size: 1rem;
+    line-height: 1.8;
+    white-space: pre-line;
+    font-style: italic;
+  }
+
+  .liber-articles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: none;
+  }
+
+  .liber-article-item {
+    font-family: 'Roboto Slab', serif;
+    color: rgba(244, 241, 232, 0.8);
+    font-size: 0.95rem;
+    padding: 0.75rem 0 0.75rem 4rem;
+    position: relative;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.08);
+    line-height: 1.65;
+  }
+
+  .liber-article-item:last-child {
+    border-bottom: none;
+  }
+
+  .art-num {
+    position: absolute;
+    left: 0;
+    font-family: 'Cardo', serif;
+    color: rgba(198, 167, 94, 0.6);
+    font-size: 0.8rem;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  .liber-colofonch-text {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: rgba(244, 241, 232, 0.75);
+    text-align: center;
+    line-height: 2;
+    margin-bottom: 2rem;
+  }
+
+  .liber-promulgacion {
+    font-family: 'Cardo', serif;
+    font-size: 0.9rem;
+    color: rgba(198, 167, 94, 0.6);
+    text-align: center;
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  .liber-promulgacion strong {
+    color: rgba(198, 167, 94, 0.9);
+    font-style: normal;
+  }
+
+  @media (max-width: 600px) {
+    .liber-hero { padding: 3.5rem 1.5rem; overflow: hidden; }
+    .liber-hero-inner { width: 100%; }
+    .liber-crest { width: 64px; }
+    .liber-main-title { letter-spacing: 0.02em; }
+    .liber-rule { width: min(90%, 280px); }
+    .liber-main-sub { font-size: 0.95rem; }
+    .liber-main-desc { font-size: 0.78rem; }
+    .liber-body { padding: 3rem 1.5rem 5rem; }
+    .liber-chapter-title { letter-spacing: 0.18em; }
+    .liber-article-item { padding: 0.6rem 0 0.6rem 3rem; font-size: 0.88rem; }
+    .art-num { font-size: 0.62rem; }
+  }
+
+  .liber-body :global(.sep-arm) {
+    background:
+      linear-gradient(rgba(198,167,94,0.5), rgba(198,167,94,0.5)) 0 0 / 100% 2px no-repeat,
+      linear-gradient(rgba(198,167,94,0.2), rgba(198,167,94,0.2)) 0 3px / 100% 1px no-repeat;
+  }
+
+  .liber-body :global(.sep-mark) {
+    color: rgba(198,167,94,0.4);
+  }
+</style>

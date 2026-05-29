@@ -1,0 +1,257 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Hero from '~/components/Hero.astro';
+import Separator from '~/components/Separator.astro';
+import { provinces, type Province } from '~/utils/provinces';
+
+export function getStaticPaths() {
+  return provinces.map((p) => ({
+    params: { provincia: p.slug },
+    props: { province: p },
+  }));
+}
+
+interface Props {
+  province: Province;
+}
+
+const { province: p } = Astro.props;
+
+const index = provinces.findIndex((x) => x.slug === p.slug);
+const prev = index > 0 ? provinces[index - 1] : null;
+const next = index < provinces.length - 1 ? provinces[index + 1] : null;
+---
+
+<BaseLayout
+  title={`${p.name} | Gobierno del Reino Soberano de Eucategarion`}
+  description={p.description}
+>
+  <Hero
+    title={p.name}
+    subtitle={p.latinName}
+    image={p.image}
+    imageAlt={p.imageAlt}
+  />
+
+  <div class="container">
+    <section class="section">
+      <div class="provincia-header">
+        <div class="provincia-meta">
+          <span class="meta-label">Autoridad</span>
+          <span class="meta-value">{p.authority}</span>
+        </div>
+        <div class="provincia-meta">
+          <span class="meta-label">Lema</span>
+          <span class="meta-value meta-lema"><em>{p.lema}</em></span>
+        </div>
+      </div>
+
+      <div class="provincia-body">
+        <div>
+          <p class="provincia-description">{p.description}</p>
+          <p>{p.detail}</p>
+
+          <h2 class="section-title competencias-title">Competencias</h2>
+          <ul class="competencias-list">
+            {p.competencias.map((c) => <li>{c}</li>)}
+          </ul>
+        </div>
+        <figure>
+          <img src={p.image} alt={p.imageAlt} />
+          <figcaption>{p.name} — {p.latinName}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <Separator />
+
+    <nav class="provincias-nav" aria-label="Navegación entre provincias">
+      <div>
+        {prev && (
+          <a href={`/gobierno/${prev.slug}`} class="nav-provincia">
+            <span class="nav-dir">← Anterior</span>
+            <span class="nav-name">{prev.name}</span>
+          </a>
+        )}
+      </div>
+      <a href="/gobierno" class="nav-gobierno">Ver todas las Provincias</a>
+      <div>
+        {next && (
+          <a href={`/gobierno/${next.slug}`} class="nav-provincia nav-next">
+            <span class="nav-dir">Siguiente →</span>
+            <span class="nav-name">{next.name}</span>
+          </a>
+        )}
+      </div>
+    </nav>
+  </div>
+</BaseLayout>
+
+<style>
+  .provincia-header {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.3);
+  }
+
+  .provincia-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta-label {
+    font-family: 'Cardo', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c6a75e;
+  }
+
+  .meta-value {
+    font-family: 'Cardo', serif;
+    font-size: 1.1rem;
+    color: #5a0f1b;
+    font-weight: 700;
+  }
+
+  .meta-lema {
+    font-weight: 400;
+  }
+
+  .provincia-body {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .provincia-description {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: #3a1520;
+    margin-bottom: 1.25rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .competencias-title {
+    margin-top: 2rem;
+  }
+
+  .competencias-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .competencias-list li {
+    padding: 0.5rem 0 0.5rem 1.75rem;
+    position: relative;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.15);
+    font-size: 0.95rem;
+  }
+
+  .competencias-list li:last-child {
+    border-bottom: none;
+  }
+
+  .competencias-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #c6a75e;
+  }
+
+  figure img {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid rgba(198, 167, 94, 0.35);
+    box-shadow: 0 4px 24px rgba(90, 15, 27, 0.12);
+  }
+
+  figure figcaption {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #7a3a46;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .provincias-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0 3rem;
+    gap: 1rem;
+  }
+
+  .nav-provincia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-decoration: none;
+    max-width: 220px;
+  }
+
+  .nav-next {
+    text-align: right;
+  }
+
+  .nav-dir {
+    font-family: 'Cardo', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: #c6a75e;
+    text-transform: uppercase;
+  }
+
+  .nav-name {
+    font-family: 'Cardo', serif;
+    font-size: 1rem;
+    color: #5a0f1b;
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+
+  .nav-provincia:hover .nav-name {
+    color: #c6a75e;
+  }
+
+  .nav-gobierno {
+    font-family: 'Cardo', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: #5a0f1b;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.5);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-gobierno:hover {
+    color: #c6a75e;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .provincia-body {
+      grid-template-columns: 1fr;
+    }
+
+    .provincia-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>

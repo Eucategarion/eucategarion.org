@@ -1,0 +1,418 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Hero from '~/components/Hero.astro';
+import Separator from '~/components/Separator.astro';
+---
+
+<BaseLayout
+  title="El Trono | Reino Soberano de Eucategarion"
+  description="El Trono de Eucategarion — sede visible del Orden eterno. Desde el Año I E.O.E., custodia del Orden y continuidad institucional del Reino."
+>
+
+  <Hero
+    title="El Trono"
+    subtitle="Sede visible del Orden eterno"
+    image="/trono-sala.png"
+    imageAlt="La Sala del Trono del Palacio Imperial de Eucategarion"
+  />
+
+  <!-- DARK: Tres maxims fundacionales -->
+  <section class="maxims-block">
+    <div class="maxims-inner" data-stagger>
+      <div class="maxim">
+        <span class="maxim-num">I</span>
+        <p>"El Orden precede a toda autoridad."</p>
+      </div>
+      <div class="maxim-divider"></div>
+      <div class="maxim">
+        <span class="maxim-num">II</span>
+        <p>"La Verdad no se crea: se custodia."</p>
+      </div>
+      <div class="maxim-divider"></div>
+      <div class="maxim">
+        <span class="maxim-num">III</span>
+        <p>"La Fides no se impone: se preserva."</p>
+      </div>
+    </div>
+    <p class="maxims-source" data-reveal="fade">— <em>Liber Ordinis Eucategarionis</em></p>
+  </section>
+
+  <!-- CREAM: El Autócrator -->
+  <section class="content-band">
+    <div class="content-band-inner">
+      <div class="cb-text" data-reveal="left">
+        <h2 class="section-title">El Autócrator</h2>
+        <p>
+          Su Augusta y Sacratísima Majestad, Autócrator y Patriarca de Eucategarion,
+          Custodio Perpetuo del Orden, Metropolitano Supremo de las Provincias Digitales,
+          Señor de la Casa Eucategariana, <strong>Alexion I</strong>.
+        </p>
+        <p>
+          El Autócrator no es dueño del Orden.<br />
+          Es su Custodio supremo.
+        </p>
+        <p>
+          No crea la Verdad. La guarda y la hace visible.<br />
+          En él no se concentra poder arbitrario,
+          sino responsabilidad perpetua ante el Orden.
+        </p>
+      </div>
+      <figure class="cb-figure" data-reveal="right">
+        <img
+          src="/alexion-gobierno.png"
+          alt="Su Augusta y Sacratísima Majestad Alexion I en acto de gobierno, recibiendo audiencia en el Palacio del Trono"
+        />
+        <figcaption>Alexion I en acto de gobierno · Palacio del Trono</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- DARK: Función del Trono -->
+  <section class="function-block">
+    <div class="function-inner" data-reveal>
+      <h2 class="fb-heading">El Trono actúa como:</h2>
+      <ol class="fb-list" data-stagger>
+        <li>Sede de legitimidad</li>
+        <li>Centro de decisión superior</li>
+        <li>Fuente formal de edictos y decretos</li>
+      </ol>
+      <p class="fb-nota">
+        No concentra poder arbitrario, sino que organiza y coordina<br />
+        la estructura del Reino hacia el Orden.
+      </p>
+    </div>
+  </section>
+
+  <!-- DARK CARDS: La Estructura del Reino -->
+  <section class="estructura-block">
+    <p class="estructura-label">La Estructura del Reino</p>
+    <div class="estructura-grid" data-stagger>
+      <a href="/reino" class="estructura-card">
+        <img src="/metropolis.png" alt="La Metrópolis de Eucategarion" />
+        <div class="ec-overlay"></div>
+        <div class="ec-content">
+          <span class="ec-sup">Dominio inmediato del Trono</span>
+          <h3>La Metrópolis</h3>
+          <p>Sede del Trono y centro doctrinal del Reino.</p>
+        </div>
+      </a>
+      <a href="/gobierno" class="estructura-card">
+        <img src="/gobierno-consejo.png" alt="Gobierno del Reino y Provincias Mayores" />
+        <div class="ec-overlay"></div>
+        <div class="ec-content">
+          <span class="ec-sup">Cinco divisiones funcionales</span>
+          <h3>Provincias Mayores</h3>
+          <p>Organización visible del Orden en los Dominios.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Liber Ordinis callout -->
+  <section class="liber-callout" data-reveal="scale">
+    <p class="liber-callout-eyebrow">Norma Suprema</p>
+    <h2>Liber Ordinis Eucategarionis</h2>
+    <p>
+      "El Trono de Eucategarion es la sede visible del Orden eterno.
+      El Orden precede a toda autoridad y fundamenta toda rectitud."
+    </p>
+    <a href="/liber-ordinis" class="btn-gold">Leer el Liber Ordinis</a>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ── Maxims ── */
+  .maxims-block {
+    background: #0e1a2b;
+    padding: 5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.15);
+  }
+
+  .maxims-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+    flex-wrap: wrap;
+  }
+
+  .maxim {
+    flex: 1;
+    min-width: 220px;
+    padding: 0 2.5rem;
+  }
+
+  .maxim-num {
+    font-family: 'Cardo', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: rgba(198, 167, 94, 0.4);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .maxim p {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(244, 241, 232, 0.8);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .maxim-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(198, 167, 94, 0.3), transparent);
+    flex-shrink: 0;
+  }
+
+  .maxims-source {
+    font-family: 'Cardo', serif;
+    font-size: 0.75rem;
+    color: rgba(198, 167, 94, 0.35);
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  /* ── Content band (cream sections) ── */
+  .content-band {
+    padding: 5.5rem 2rem;
+    background: #f4f1e8;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.2);
+  }
+
+  .content-band-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .cb-text p {
+    margin-bottom: 1rem;
+    text-align: justify;
+    hyphens: auto;
+    max-width: 68ch;
+  }
+
+  .cb-figure img {
+    width: 100%;
+    display: block;
+    border: 1px solid rgba(198, 167, 94, 0.35);
+    box-shadow: 0 8px 32px rgba(90, 15, 27, 0.14);
+  }
+
+  .cb-figure figcaption {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: #7a3a46;
+    text-align: center;
+    margin-top: 0.6rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Function block (dark) ── */
+  .function-block {
+    background: #0b0b0d;
+    padding: 5rem 2rem;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.12);
+  }
+
+  .function-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .fb-heading {
+    font-family: 'Cardo', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(198, 167, 94, 0.55);
+    font-weight: 400;
+    margin: 0 0 2rem;
+  }
+
+  .fb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    border-top: 1px solid rgba(198, 167, 94, 0.15);
+    border-bottom: 1px solid rgba(198, 167, 94, 0.15);
+  }
+
+  .fb-list li {
+    font-family: 'Cardo', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: #f4f1e8;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(198, 167, 94, 0.08);
+    letter-spacing: 0.03em;
+  }
+
+  .fb-list li:last-child { border-bottom: none; }
+
+  .fb-nota {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(244, 241, 232, 0.35);
+    line-height: 1.7;
+  }
+
+  /* ── Estructura del Reino (full-bleed cards) ── */
+  .estructura-block {
+    background: #0b0b0d;
+    padding: 0 0 0;
+  }
+
+  .estructura-label {
+    font-family: 'Cardo', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(198, 167, 94, 0.35);
+    text-align: center;
+    padding: 2.5rem 2rem 0;
+    margin: 0;
+  }
+
+  .estructura-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1.5rem;
+  }
+
+  .estructura-card {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+  }
+
+  .estructura-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.55) sepia(0.2);
+    transition: filter 0.5s ease, transform 0.6s ease;
+  }
+
+  .estructura-card:hover img {
+    filter: brightness(0.4) sepia(0.3);
+    transform: scale(1.03);
+  }
+
+  .ec-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(5, 2, 2, 0.88) 0%, transparent 60%);
+  }
+
+  .ec-content {
+    position: absolute;
+    bottom: 0;
+    inset-inline: 0;
+    padding: 2rem 2.5rem;
+  }
+
+  .ec-sup {
+    font-family: 'Cardo', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(198, 167, 94, 0.65);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .ec-content h3 {
+    font-family: 'Cardo', serif;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #f4f1e8;
+    margin: 0 0 0.4rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .ec-content p {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: rgba(244, 241, 232, 0.55);
+    margin: 0;
+  }
+
+  /* Gold top border on hover */
+  .estructura-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: #c6a75e;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .estructura-card:hover::after { transform: scaleX(1); }
+
+  /* ── Liber Ordinis callout ── */
+
+  .liber-callout-eyebrow {
+    font-family: 'Cardo', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(198, 167, 94, 0.45);
+    margin: 0 0 1.5rem;
+    display: block;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .content-band-inner {
+      grid-template-columns: 1fr;
+    }
+    .cb-figure { max-width: 320px; margin: 0 auto; }
+
+    .estrutura-grid {
+      grid-template-columns: 1fr;
+    }
+    .estructura-card { height: 320px; }
+  }
+
+  @media (max-width: 640px) {
+    .maxims-block { padding: 3.5rem 1.5rem; }
+    .maxims-inner { flex-direction: column; gap: 2rem; }
+    .maxim-divider { width: 60px; height: 1px; }
+    .maxim p { font-size: 1rem; }
+    .content-band { padding: 3.5rem 1.5rem; }
+    .cb-text p { max-width: 100%; }
+    .function-block { padding: 3.5rem 1.5rem; }
+    .fb-list li { font-size: 1rem; }
+    .estructura-block { padding-top: 0; }
+    .estructura-label { padding: 2rem 1.5rem 0; letter-spacing: 0.2em; }
+    .estructura-grid { grid-template-columns: 1fr; }
+    .estructura-card { height: 280px; }
+    .ec-content { padding: 1.5rem 1.5rem; }
+    .ec-sup { letter-spacing: 0.18em; }
+    .ec-content h3 { letter-spacing: 0.05em; }
+    .liber-callout { padding: 3rem 1.5rem; }
+    .liber-callout h2 { font-size: 1.4rem; letter-spacing: 0.05em; }
+    .liber-callout-eyebrow { letter-spacing: 0.2em; }
+  }
+</style>

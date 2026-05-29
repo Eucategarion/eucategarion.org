@@ -1,0 +1,370 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Hero from '~/components/Hero.astro';
+
+const funciones = [
+  {
+    num: 'I',
+    label: 'Redacción Oficial',
+    desc: 'Formulación técnica de edictos, decretos y cartas solemnes conforme al rito jurídico del Reino.',
+  },
+  {
+    num: 'II',
+    label: 'Registro y Numeración',
+    desc: 'Asignación de código institucional conforme al Calendarium Ordinis. Ningún acto existe sin número.',
+  },
+  {
+    num: 'III',
+    label: 'Sellado y Autenticación',
+    desc: 'Aplicación del Sello del Trono y verificación criptográfica. La autoridad se certifica, no se falsifica.',
+  },
+  {
+    num: 'IV',
+    label: 'Publicación Oficial',
+    desc: 'Difusión en el Archivo Metropolitano y canales autorizados del Reino.',
+  },
+  {
+    num: 'V',
+    label: 'Custodia Permanente',
+    desc: 'Preservación íntegra y verificable de todos los documentos promulgados. Nada se elimina.',
+  },
+];
+---
+
+<BaseLayout
+  title="Cancillería Imperial | Reino Soberano de Eucategarion"
+  description="La Cancillería Imperial certifica y registra todos los actos del Trono. No legisla: custodia la integridad documental del Reino."
+>
+
+  <Hero
+    title="Cancillería Imperial"
+    subtitle="Custodia de los actos públicos del Reino."
+    image="/cancilleria-2.png"
+    imageAlt="Interior de la Cancillería Imperial"
+  />
+
+  <!-- Tres frases — dark -->
+  <section class="cn-statements">
+    <div class="cn-statements-inner" data-stagger>
+      <div class="cn-stmt">
+        <p>No legisla por sí misma.</p>
+      </div>
+      <div class="cn-stmt-sep"></div>
+      <div class="cn-stmt">
+        <p>No crea autoridad.</p>
+      </div>
+      <div class="cn-stmt-sep"></div>
+      <div class="cn-stmt cn-stmt--gold">
+        <p>La certifica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué es la Cancillería — split cream/image -->
+  <section class="cn-what">
+    <div class="cn-what-content" data-reveal="left">
+      <p class="cn-eyebrow">La Cancillería Imperial</p>
+      <h2>El órgano formal del Trono</h2>
+      <p>
+        La Cancillería Imperial es el órgano encargado de formalizar,
+        registrar y publicar los actos que emanan del Trono en virtud del Orden.
+      </p>
+      <p>
+        En ella se redactan los edictos,
+        se autentican las promulgaciones,
+        y se conserva la integridad documental del Reino.
+      </p>
+      <p class="cn-nota">Todo acto válido debe pasar por la Cancillería.</p>
+    </div>
+    <div class="cn-what-image" data-reveal="right">
+      <img src="/cancilleria-3.png" alt="Sala de documentación de la Cancillería Imperial" />
+    </div>
+  </section>
+
+  <!-- Funciones — 5 pasos horizontales en dark -->
+  <section class="cn-functions">
+    <p class="cn-func-eyebrow">Funciones de la Cancillería</p>
+    <div class="cn-func-steps" data-stagger>
+      {funciones.map((fn, i) => (
+        <div class="cn-step">
+          <div class="cn-step-num">{fn.num}</div>
+          {i < funciones.length - 1 && <div class="cn-step-connector"></div>}
+          <h3 class="cn-step-label">{fn.label}</h3>
+          <p class="cn-step-desc">{fn.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Imagen final — full width -->
+  <div class="cn-final-image">
+    <img src="/cancilleria.png" alt="Fachada de la Cancillería Imperial de Eucategarion" />
+    <div class="cn-fi-overlay"></div>
+    <div class="cn-fi-caption">
+      <span>Cancillería Imperial · Metrópolis de Eucategarion</span>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  /* ── Statements ── */
+  .cn-statements {
+    background: #0b0b0d;
+    padding: 5rem 2rem;
+    border-bottom: 1px solid rgba(198,167,94,0.12);
+  }
+
+  .cn-statements-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cn-stmt {
+    flex: 1;
+    text-align: center;
+    padding: 0 2rem;
+  }
+
+  .cn-stmt p {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: rgba(244,241,232,0.65);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .cn-stmt--gold p {
+    color: #c6a75e;
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    letter-spacing: 0.04em;
+  }
+
+  .cn-stmt-sep {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, rgba(198,167,94,0.25), transparent);
+    flex-shrink: 0;
+  }
+
+  /* ── What ── */
+  .cn-what {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 440px;
+    border-bottom: 3px solid #c6a75e;
+  }
+
+  .cn-what-content {
+    background: #f4f1e8;
+    padding: 4.5rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cn-eyebrow {
+    font-family: 'Cardo', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: #c6a75e;
+    display: block;
+    margin: 0 0 0.75rem;
+  }
+
+  .cn-what-content h2 {
+    font-family: 'Cardo', serif;
+    font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #5a0f1b;
+    margin: 0 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(198,167,94,0.3);
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .cn-what-content p {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: #3a1520;
+    margin-bottom: 0.9rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .cn-nota {
+    font-family: 'Cardo', serif !important;
+    font-style: italic;
+    color: #5a0f1b !important;
+    font-size: 1rem !important;
+    margin-top: 0.5rem;
+  }
+
+  .cn-what-image {
+    overflow: hidden;
+  }
+
+  .cn-what-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.65) sepia(0.1);
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .cn-what-image:hover img { transform: scale(1.03); }
+
+  /* ── Functions ── */
+  .cn-functions {
+    background: #0e1a2b;
+    padding: 5rem 2rem 5.5rem;
+    border-bottom: 1px solid rgba(198,167,94,0.12);
+  }
+
+  .cn-func-eyebrow {
+    font-family: 'Cardo', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(198,167,94,0.4);
+    text-align: center;
+    margin: 0 0 3.5rem;
+  }
+
+  .cn-func-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Horizontal connector line under the numbers */
+  .cn-func-steps::before {
+    content: '';
+    position: absolute;
+    top: 1.35rem; /* aligns with center of numeral */
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right,
+      transparent 0%,
+      rgba(198,167,94,0.25) 10%,
+      rgba(198,167,94,0.25) 90%,
+      transparent 100%
+    );
+  }
+
+  .cn-step {
+    padding: 0 1.25rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .cn-step-num {
+    font-family: 'Cardo', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #c6a75e;
+    width: 2.7rem;
+    height: 2.7rem;
+    border: 1px solid rgba(198,167,94,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    background: #0e1a2b;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.05em;
+  }
+
+  .cn-step-label {
+    font-family: 'Cardo', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(244,241,232,0.85);
+    margin: 0 0 0.75rem;
+    line-height: 1.2;
+  }
+
+  .cn-step-desc {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.75rem;
+    color: rgba(244,241,232,0.42);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── Final image ── */
+  .cn-final-image {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+  }
+
+  .cn-final-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) sepia(0.1);
+    display: block;
+  }
+
+  .cn-fi-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(5,2,2,0.4) 0%, rgba(5,2,2,0.7) 100%);
+  }
+
+  .cn-fi-caption {
+    position: absolute;
+    bottom: 1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .cn-fi-caption span {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: rgba(198,167,94,0.6);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 900px) {
+    .cn-statements-inner { flex-direction: column; gap: 1.5rem; }
+    .cn-stmt-sep { width: 60%; height: 1px; margin: 0 auto; }
+    .cn-what { grid-template-columns: 1fr; }
+    .cn-what-image { height: 280px; }
+    .cn-func-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .cn-func-steps::before { display: none; }
+    .cn-final-image { height: 260px; }
+  }
+
+  @media (max-width: 600px) {
+    .cn-statements { padding: 3.5rem 1.5rem; }
+    .cn-stmt--gold p { font-size: 1.3rem; }
+    .cn-what-content { padding: 2.5rem 1.5rem; }
+    .cn-what-content h2 { font-size: 1.1rem; letter-spacing: 0.01em; }
+    .cn-functions { padding: 3.5rem 1.5rem 4rem; }
+    .cn-func-steps { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cn-func-steps::before { display: none; }
+  }
+</style>

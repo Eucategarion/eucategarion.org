@@ -1,0 +1,295 @@
+---
+const currentPath = Astro.url.pathname;
+
+const items = [
+  { href: '/',              label: 'El Trono',      n: '01' },
+  { href: '/reino',         label: 'El Reino',      n: '02' },
+  { href: '/gobierno',      label: 'Gobierno',      n: '03' },
+  { href: '/legislacion',   label: 'Legislación',   n: '04' },
+  { href: '/liber-ordinis', label: 'Liber Ordinis', n: '05' },
+  { href: '/calendario',    label: 'Calendario',    n: '06' },
+  { href: '/cancilleria',   label: 'Cancillería',   n: '07' },
+];
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<!-- Desktop nav bar -->
+<nav class="nav-bar" aria-label="Navegación principal">
+  <ul class="nav-list">
+    {items.map(({ href, label, n }) => (
+      <li>
+        <a href={href} class:list={['nav-item', { 'nav-item--active': isActive(href) }]}>
+          <span class="nav-n">{n}</span>
+          <span class="nav-label">{label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<!-- Mobile overlay -->
+<div class="mob-overlay" id="mob-overlay" aria-hidden="true" role="dialog" aria-label="Menú de navegación">
+  <div class="mob-inner">
+    <a href="/" class="mob-crest" tabindex="-1">
+      <img src="/escudo-white.png" alt="Escudo del Reino" />
+    </a>
+
+    <nav aria-label="Navegación mobile">
+      <ul class="mob-list">
+        {items.map(({ href, label, n }) => (
+          <li class="mob-list-item">
+            <a
+              href={href}
+              class:list={['mob-link', { 'mob-link--active': isActive(href) }]}
+              tabindex="-1"
+            >
+              <span class="mob-n">{n}</span>
+              <span class="mob-label">{label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <p class="mob-motto"><em>Ordo et Fides</em></p>
+  </div>
+</div>
+
+<script>
+  const burger   = document.getElementById('mh-burger');
+  const overlay  = document.getElementById('mob-overlay');
+
+  function openMenu() {
+    overlay!.classList.add('is-open');
+    overlay!.setAttribute('aria-hidden', 'false');
+    burger!.classList.add('is-open');
+    burger!.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    // Make overlay links focusable
+    overlay!.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '0'));
+  }
+
+  function closeMenu() {
+    overlay!.classList.remove('is-open');
+    overlay!.setAttribute('aria-hidden', 'true');
+    burger!.classList.remove('is-open');
+    burger!.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    overlay!.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
+  }
+
+  burger?.addEventListener('click', () => {
+    overlay!.classList.contains('is-open') ? closeMenu() : openMenu();
+  });
+
+  // Close on backdrop click (outside mob-inner)
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeMenu();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay!.classList.contains('is-open')) closeMenu();
+  });
+
+  // Close when navigating (SPA-like)
+  overlay?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+</script>
+
+<style>
+  /* ── Desktop nav bar ── */
+  .nav-bar {
+    background: #0b0b0d;
+    border-bottom: 3px solid #5a0f1b;
+  }
+
+  .nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin-inline: auto;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 0.9rem;
+    text-decoration: none;
+    position: relative;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: #c6a75e;
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+
+  .nav-item:hover,
+  .nav-item--active { background: rgba(198,167,94,0.05); text-decoration: none; }
+
+  .nav-item:hover::after,
+  .nav-item--active::after { transform: scaleX(1); }
+
+  .nav-n {
+    font-family: 'Cardo', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+    color: rgba(198,167,94,0.35);
+    line-height: 1;
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .nav-item:hover .nav-n,
+  .nav-item--active .nav-n { color: rgba(198,167,94,0.7); }
+
+  .nav-label {
+    font-family: 'Cardo', serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,241,232,0.42);
+    transition: color 0.2s;
+    line-height: 1;
+  }
+
+  .nav-item:hover .nav-label { color: rgba(244,241,232,0.85); }
+  .nav-item--active .nav-label { color: #c6a75e; }
+
+  /* Hide bar on mobile — replaced by overlay */
+  @media (max-width: 700px) {
+    .nav-bar { display: none; }
+  }
+
+  /* ── Mobile overlay ── */
+  .mob-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 9, 15, 0.0);
+    z-index: 200;
+    display: flex;
+    align-items: stretch;
+    pointer-events: none;
+    transition: background 0.3s;
+  }
+
+  .mob-overlay.is-open {
+    background: rgba(7, 9, 15, 0.92);
+    pointer-events: all;
+  }
+
+  .mob-inner {
+    width: min(340px, 88vw);
+    background: #07090f;
+    border-right: 1px solid rgba(198,167,94,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 2rem 3rem;
+    gap: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+
+  .mob-overlay.is-open .mob-inner {
+    transform: translateX(0);
+  }
+
+  .mob-crest img {
+    width: 56px;
+    opacity: 0.65;
+    display: block;
+  }
+
+  .mob-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .mob-list-item {
+    border-bottom: 1px solid rgba(198,167,94,0.08);
+  }
+
+  .mob-list-item:first-child {
+    border-top: 1px solid rgba(198,167,94,0.08);
+  }
+
+  .mob-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .mob-link:hover {
+    background: rgba(198,167,94,0.04);
+    text-decoration: none;
+  }
+
+  .mob-n {
+    font-family: 'Cardo', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: rgba(198,167,94,0.35);
+    flex-shrink: 0;
+    width: 1.8rem;
+    text-align: right;
+  }
+
+  .mob-label {
+    font-family: 'Cardo', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244,241,232,0.55);
+    transition: color 0.15s;
+    line-height: 1;
+  }
+
+  .mob-link:hover .mob-label { color: rgba(244,241,232,0.9); }
+  .mob-link:hover .mob-n { color: rgba(198,167,94,0.6); }
+
+  .mob-link--active .mob-label { color: #c6a75e; }
+  .mob-link--active .mob-n { color: rgba(198,167,94,0.65); }
+
+  /* Gold left bar on active */
+  .mob-link--active {
+    border-left: 2px solid #c6a75e;
+    padding-left: calc(0.5rem - 2px);
+  }
+
+  .mob-motto {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: rgba(198,167,94,0.25);
+    letter-spacing: 0.12em;
+    margin: auto 0 0;
+  }
+
+  /* Only show overlay mechanism on mobile */
+  @media (min-width: 701px) {
+    .mob-overlay { display: none; }
+  }
+</style>

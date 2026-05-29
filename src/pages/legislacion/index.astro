@@ -1,0 +1,313 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Separator from '~/components/Separator.astro';
+import { getCollection } from 'astro:content';
+
+const docs = await getCollection('legislacion');
+docs.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const typeOrder = ['Acta Fundacional', 'Proclamación', 'Decreto', 'Edicto'];
+const byType: Record<string, typeof docs> = {};
+for (const doc of docs) {
+  if (!byType[doc.data.type]) byType[doc.data.type] = [];
+  byType[doc.data.type].push(doc);
+}
+const sortedTypes = typeOrder.filter(t => byType[t]);
+---
+
+<BaseLayout
+  title="Legislación | Reino Soberano de Eucategarion"
+  description="Registro legislativo oficial del Sacratísimo Reino Soberano de Eucategarion."
+>
+
+  <!-- Registrum header -->
+  <section class="reg-masthead">
+    <p class="reg-eyebrow">Cancillería Imperial · Archivo Metropolitano</p>
+    <h1 class="reg-title">Registrum Legislativum</h1>
+    <p class="reg-subtitle">Sacratísimi Regni Sovrani Eucategarionis</p>
+    <div class="reg-rule"></div>
+    <p class="reg-count">
+      {docs.length} {docs.length === 1 ? 'documento promulgado' : 'documentos promulgados'} en el Archivo
+    </p>
+  </section>
+
+  <!-- Intro -->
+  <section class="reg-intro">
+    <p>
+      La Legislación de Eucategarion constituye la expresión formal del Orden en la vida
+      institucional del Reino. Toda norma válida emana del Trono, es promulgada públicamente
+      y queda registrada en el Archivo Metropolitano. Ninguna disposición tiene vigor
+      si no ha sido promulgada conforme al rito jurídico establecido.
+    </p>
+  </section>
+
+  <!-- Document registry -->
+  <div class="reg-body">
+    {sortedTypes.map((type) => (
+      <section class="reg-section">
+        <header class="reg-section-header">
+          <span class="reg-type-label">{type}s</span>
+          <span class="reg-type-count">{byType[type].length} {byType[type].length === 1 ? 'documento' : 'documentos'}</span>
+        </header>
+
+        <ol class="reg-list">
+          {byType[type].map((doc, i) => (
+            <li>
+              <a href={`/legislacion/${doc.id.replace(/\.mdx?$/, '')}`} class="reg-entry">
+                <div class="reg-entry-num">{String(i + 1).padStart(2, '0')}</div>
+                <div class="reg-entry-left">
+                  <span class="reg-code">{doc.data.code}</span>
+                  <span class="reg-title-entry">{doc.data.title}</span>
+                  <span class="reg-date">{doc.data.imperialDate}</span>
+                </div>
+                <div class="reg-entry-right">
+                  <span class="reg-status">{doc.data.status}</span>
+                  <span class="reg-arrow" aria-hidden="true">Consultar</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+  </div>
+
+  <Separator />
+</BaseLayout>
+
+<style>
+  /* ── Masthead ── */
+  .reg-masthead {
+    background: #0b0b0d;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(198,167,94,0.1);
+  }
+
+  .reg-eyebrow {
+    font-family: 'Cardo', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(198,167,94,0.35);
+    margin: 0 0 1.5rem;
+  }
+
+  .reg-title {
+    font-family: 'Cardo', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f4f1e8;
+    margin: 0 0 0.5rem;
+    line-height: 1;
+  }
+
+  .reg-subtitle {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: rgba(198,167,94,0.5);
+    margin: 0 0 2rem;
+    letter-spacing: 0.06em;
+  }
+
+  .reg-rule {
+    width: 160px;
+    margin: 0 auto 1.75rem;
+    height: 5px;
+    background:
+      linear-gradient(rgba(198,167,94,0.45), rgba(198,167,94,0.45)) 0 0 / 100% 3px no-repeat,
+      linear-gradient(rgba(198,167,94,0.15), rgba(198,167,94,0.15)) 0 4px / 100% 1px no-repeat;
+  }
+
+  .reg-count {
+    font-family: 'Cardo', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: rgba(198,167,94,0.3);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  /* ── Intro ── */
+  .reg-intro {
+    max-width: 68ch;
+    margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+    text-align: justify;
+    hyphens: auto;
+    font-style: italic;
+    color: #3a1520;
+    font-family: 'Cardo', serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .reg-intro::first-letter {
+    float: left;
+    font-family: 'Cardo', serif;
+    font-size: 4rem;
+    line-height: 0.8;
+    margin: 0.08em 0.12em 0 0;
+    color: #5a0f1b;
+    font-weight: 700;
+    padding: 0 3px;
+    border-left: 3px solid #c6a75e;
+  }
+
+  /* ── Document registry ── */
+  .reg-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .reg-section {
+    border-top: 2px solid #5a0f1b;
+    padding: 2.5rem 0 1rem;
+  }
+
+  .reg-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+  }
+
+  .reg-type-label {
+    font-family: 'Cardo', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #5a0f1b;
+  }
+
+  .reg-type-count {
+    font-family: 'Cardo', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(198,167,94,0.55);
+    font-style: italic;
+  }
+
+  .reg-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .reg-list li {
+    border-bottom: 1px solid rgba(198,167,94,0.15);
+  }
+
+  .reg-list li:last-child { border-bottom: none; }
+
+  .reg-entry {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 0.75rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .reg-entry:hover {
+    background: rgba(198,167,94,0.04);
+  }
+
+  .reg-entry:hover .reg-arrow { opacity: 1; color: #c6a75e; }
+
+  .reg-entry-num {
+    font-family: 'Cardo', serif;
+    font-size: 0.68rem;
+    font-style: italic;
+    color: rgba(198,167,94,0.3);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .reg-entry-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  .reg-code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: #c6a75e;
+    display: block;
+  }
+
+  .reg-title-entry {
+    font-family: 'Cardo', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #5a0f1b;
+    display: block;
+    line-height: 1.2;
+  }
+
+  .reg-date {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: #7a3a46;
+    display: block;
+    margin-top: 0.1rem;
+  }
+
+  .reg-entry-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .reg-status {
+    font-family: 'Cardo', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c6a75e;
+    border: 1px solid rgba(198,167,94,0.35);
+    padding: 0.12rem 0.55rem;
+    white-space: nowrap;
+  }
+
+  .reg-arrow {
+    font-family: 'Cardo', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5a0f1b;
+    opacity: 0.35;
+    transition: opacity 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    .reg-entry {
+      grid-template-columns: 20px 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.5rem 0.75rem;
+      padding: 1rem 0.5rem;
+    }
+    .reg-entry-right {
+      grid-column: 2;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .reg-arrow { opacity: 0.5; }
+  }
+</style>

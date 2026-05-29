@@ -1,0 +1,58 @@
+---
+interface Props {
+  tight?: boolean;
+}
+const { tight = false } = Astro.props;
+---
+
+<div class:list={['sep', { 'sep--tight': tight }]} role="separator" aria-hidden="true">
+  <span class="sep-arm"></span>
+  <span class="sep-mark">✦</span>
+  <span class="sep-arm"></span>
+</div>
+
+<style>
+  .sep {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+  }
+
+  .sep--tight {
+    margin: 1.5rem auto;
+  }
+
+  /* Each arm is itself a double rule */
+  .sep-arm {
+    flex: 1;
+    height: 5px;
+    background:
+      linear-gradient(#5a0f1b, #5a0f1b) 0 0 / 100% 2px no-repeat,
+      linear-gradient(rgba(198,167,94,0.5), rgba(198,167,94,0.5)) 0 3px / 100% 1px no-repeat;
+    /* Fade out at the outer edge */
+    -webkit-mask: linear-gradient(to var(--fade-dir, right), transparent 0%, black 30%);
+    mask: linear-gradient(to var(--fade-dir, right), transparent 0%, black 30%);
+  }
+
+  .sep-arm:first-child {
+    --fade-dir: right;
+    transform: scaleX(-1);
+    -webkit-mask: linear-gradient(to left, transparent 0%, black 30%);
+    mask: linear-gradient(to left, transparent 0%, black 30%);
+  }
+
+  .sep-arm:last-child {
+    -webkit-mask: linear-gradient(to right, black 70%, transparent 100%);
+    mask: linear-gradient(to right, black 70%, transparent 100%);
+  }
+
+  .sep-mark {
+    font-size: 0.75rem;
+    color: #c6a75e;
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+</style>

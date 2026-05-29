@@ -1,87 +1,51 @@
-# Welcome to React Router!
+# Sacratísimo Reino Soberano de Eucategarion
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Sitio oficial del Reino Soberano de Eucategarion. *Ordo et Fides.*
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## Stack
 
-## Features
+- **[Astro](https://astro.build/)** — generación estática (SSG)
+- **TailwindCSS** — estilos utilitarios
+- **MDX** — contenido legislativo y estructurado
+- Deploy: **GitHub Pages**
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
+## Desarrollo
 
 ```bash
-npm install
+pnpm install
+pnpm dev          # localhost:4321
+pnpm build        # build estático → dist/
+pnpm preview      # previsualizar el build
 ```
 
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+## Estructura
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+src/
+├── components/       # Componentes Astro reutilizables
+├── content/
+│   └── legislacion/  # Edictos y decretos en MDX
+├── layouts/          # Layout base del Reino
+├── pages/
+│   ├── index.astro        # El Trono
+│   ├── reino.astro        # El Reino
+│   ├── gobierno/
+│   │   ├── index.astro    # Gobierno del Reino
+│   │   └── [provincia].astro
+│   ├── cancilleria.astro  # Cancillería Imperial
+│   ├── legislacion/
+│   │   └── index.astro    # Archivo legislativo
+│   ├── liber-ordinis.astro # Liber Ordinis
+│   └── calendario.astro   # Calendario imperial
+└── utils/
+    └── calendar.ts    # Lógica del calendario E.O.E.
+public/               # Assets (imágenes, escudo, mapa)
 ```
 
-## Styling
+## El Reino
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+El **Sacratísimo Reino Soberano de Eucategarion** es un reino soberano fundado en el Año I de la *Era Ordinis Elevati* (E.O.E.), equivalente al año civil 2026. Gobernado por el Autocrátor Alexion I bajo el lema *Ordo et Fides*.
 
----
+La estructura institucional comprende **La Metrópolis** (capital y dominio directo del Trono) y **cinco Provincias Mayores**: Provincia del Orden, Provincia de la Fides, Provincia de la Elevación, Provincia de las Artes y la Tradición, y Provincia de la Expansión Digital.
 
-Built with ❤️ using React Router.
+Ver `CLAUDE.md` para documentación completa del proyecto.

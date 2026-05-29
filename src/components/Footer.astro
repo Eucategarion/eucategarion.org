@@ -1,0 +1,233 @@
+---
+import { getImperialYear } from '~/utils/calendar';
+const { year } = getImperialYear(new Date());
+
+const nav = [
+  { href: '/',              label: 'El Trono' },
+  { href: '/reino',         label: 'El Reino' },
+  { href: '/gobierno',      label: 'Gobierno' },
+  { href: '/legislacion',   label: 'Legislación' },
+  { href: '/liber-ordinis', label: 'Liber Ordinis' },
+  { href: '/cancilleria',   label: 'Cancillería' },
+  { href: '/calendario',    label: 'Calendario' },
+];
+---
+
+<footer>
+
+  <!-- Monogram superior -->
+  <div class="ft-top">
+    <a href="/" class="ft-crest" aria-label="Inicio">
+      <img src="/escudo-white.png" alt="Escudo del Reino Soberano de Eucategarion" />
+    </a>
+    <p class="ft-kingdom">Sacratísimo Reino Soberano de Eucategarion</p>
+    <div class="ft-rule">
+      <span class="ft-rule-line"></span>
+      <span class="ft-rule-mark">✦</span>
+      <span class="ft-rule-line"></span>
+    </div>
+  </div>
+
+  <!-- Frase del Liber Ordinis -->
+  <blockquote class="ft-quote">
+    <p>"El Trono de Eucategarion es la sede visible del Orden eterno.
+    El Orden precede a toda autoridad y fundamenta toda rectitud."</p>
+    <cite>— Liber Ordinis Eucategarionis</cite>
+  </blockquote>
+
+  <!-- Navegación + info -->
+  <div class="ft-mid">
+    <nav class="ft-nav" aria-label="Navegación del pie">
+      {nav.map(({ href, label }) => (
+        <a href={href} class="ft-nav-link">{label}</a>
+      ))}
+    </nav>
+    <div class="ft-info">
+      <p>Fundado en el Año I del Orden Elevado</p>
+      <p>Metrópolis de Eucategarion · Trono Imperial</p>
+      <p>Custodio Perpetuo del Orden</p>
+    </div>
+  </div>
+
+  <!-- Banda de cierre -->
+  <div class="ft-bottom">
+    <span>© Año {year} E.O.E.</span>
+    <span class="ft-bottom-sep">·</span>
+    <span>Trono de Eucategarion</span>
+    <span class="ft-bottom-sep">·</span>
+    <em>Ordo et Fides</em>
+  </div>
+
+</footer>
+
+<style>
+  footer {
+    background: #07090f;
+    border-top: 1px solid rgba(198,167,94,0.15);
+    color: #f4f1e8;
+  }
+
+  /* ── Top ── */
+  .ft-top {
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ft-crest img {
+    width: 72px;
+    height: auto;
+    opacity: 0.75;
+    transition: opacity 0.3s;
+  }
+
+  .ft-crest:hover img { opacity: 0.95; }
+
+  .ft-kingdom {
+    font-family: 'Cardo', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(198,167,94,0.45);
+    margin: 0;
+  }
+
+  .ft-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: min(320px, 80%);
+  }
+
+  .ft-rule-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(198,167,94,0.25));
+  }
+
+  .ft-rule-line:last-child {
+    background: linear-gradient(to left, transparent, rgba(198,167,94,0.25));
+  }
+
+  .ft-rule-mark {
+    font-size: 0.6rem;
+    color: rgba(198,167,94,0.35);
+    flex-shrink: 0;
+  }
+
+  /* ── Quote ── */
+  .ft-quote {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 3rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(198,167,94,0.1);
+  }
+
+  .ft-quote p {
+    font-family: 'Cardo', serif;
+    font-style: italic;
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    color: rgba(244,241,232,0.55);
+    line-height: 1.7;
+    margin: 0 0 0.75rem;
+  }
+
+  .ft-quote cite {
+    font-family: 'Cardo', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: rgba(198,167,94,0.35);
+    font-style: normal;
+  }
+
+  /* ── Mid (nav + info) ── */
+  .ft-mid {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+    border-bottom: 1px solid rgba(198,167,94,0.08);
+  }
+
+  /* Nav: horizontal list of links */
+  .ft-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0;
+  }
+
+  .ft-nav-link {
+    font-family: 'Cardo', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: rgba(244,241,232,0.35);
+    text-decoration: none;
+    padding: 0.2rem 0;
+    transition: color 0.2s;
+    display: inline-block;
+  }
+
+  .ft-nav-link:not(:last-child)::after {
+    content: ' ·';
+    color: rgba(198,167,94,0.2);
+    margin-right: 0.5rem;
+  }
+
+  .ft-nav-link:hover {
+    color: rgba(198,167,94,0.75);
+    text-decoration: none;
+  }
+
+  .ft-info {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .ft-info p {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.7rem;
+    color: rgba(244,241,232,0.2);
+    margin: 0 0 0.25rem;
+    line-height: 1.5;
+  }
+
+  /* ── Bottom strip ── */
+  .ft-bottom {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Cardo', serif;
+    font-size: 0.68rem;
+    color: rgba(244,241,232,0.18);
+    letter-spacing: 0.06em;
+  }
+
+  .ft-bottom em { font-style: italic; color: rgba(198,167,94,0.2); }
+
+  .ft-bottom-sep { color: rgba(198,167,94,0.15); }
+
+  @media (max-width: 640px) {
+    .ft-top { padding: 3rem 1.5rem 1.5rem; }
+    .ft-crest img { width: 56px; }
+    .ft-quote { padding: 2rem 1.5rem 2.5rem; }
+    .ft-quote p { font-size: 0.95rem; }
+    .ft-mid { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 1.5rem; }
+    .ft-info { text-align: left; }
+    /* Nav: wrap into a tighter grid on mobile */
+    .ft-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .ft-nav-link { font-size: 0.82rem; }
+    .ft-nav-link::after { display: none; }
+    .ft-bottom { flex-wrap: wrap; padding: 1rem 1.5rem; gap: 0.5rem; }
+  }
+</style>
